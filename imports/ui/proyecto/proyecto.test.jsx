@@ -16,6 +16,7 @@ import {Meteor} from 'meteor/meteor';
 if(Meteor.isClient)
 {
 
+    // muy bien esta solucion para simular que ya esta logueado el usuario
     Meteor.userId = function() {
         return '1213213';
     };
@@ -36,6 +37,7 @@ if(Meteor.isClient)
 
         beforeEach(function () {
             console.log(Meteor.user());
+            // este const user para que lo usan?
             const user = {
                 'services': {
                     'github': {
@@ -48,6 +50,8 @@ if(Meteor.isClient)
             // console.log(Meteor.users.find({}).fetch());
         });
 
+
+        // buen test para verificar que se haya renderizado el proyecto
         it('Should Render correctly', function () {
             const testProject = Factory.build('project', {
                 'url' : 'https://github.com/Llamatech/review-me',
@@ -77,6 +81,9 @@ if(Meteor.isClient)
             chai.assert(result.hasClass('proyecto'));
           // chai.assert.equal(true, true, "Test");
         });
+
+        // depronto hacer un test para verificar que proyModal se renderiza bien
     });
 }
 
+// los archivos tests estan a la mitad del proyecto, lo cual puede llegar a ser confuso. Depronto seria bueno dejarlos en una carpeta testing aparte

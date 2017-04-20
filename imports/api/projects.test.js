@@ -6,6 +6,7 @@ import { assert } from 'meteor/practicalmeteor:chai';
 
 if(Meteor.server)
 {
+    // buena forma de simular un usuario ya logueado
     Meteor.user = function() {
         return {
             'services': {
@@ -43,7 +44,7 @@ if(Meteor.server)
                 'user' : 'Llamatest2'
             });
         });
-
+        // buen test para verificar que agrega y encuentra un proyecto
         it('Should find a newly created project', function() {
             // const result = Projects.find({});
             var project = {
@@ -75,7 +76,7 @@ if(Meteor.server)
             });
             // console.log(result)
         });
-
+        // buen test para verificar que el comentario se agregue
         it('Should comment a project', function() {
             const project = Projects.find({}).fetch();
             // console.log(project[0]);
@@ -86,7 +87,7 @@ if(Meteor.server)
                 // console.log(projectModified[0]);
             });
         });
-
+        // buen test para verificar la actualizacion del nuevo rating
         it('Should update mean rating of a project', function() {
             const project = Projects.find({}).fetch();
             Meteor.call('projects.addRating', {projId:project[0]._id, newRate:5}, function() {
@@ -159,3 +160,5 @@ if(Meteor.server)
 
     });
 }
+
+// en general muy completos los tests
